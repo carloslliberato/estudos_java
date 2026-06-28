@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 public class Addition {
     public static void main(String[] args){
@@ -15,5 +16,7 @@ public class Addition {
 
         System.out.printf("Sum is %d%n", sum);
         System.out.printf("Sum is %d%n", (number1 + number2));
+
+        input.close();
     }
 }
