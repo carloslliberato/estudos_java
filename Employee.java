@@ -20,6 +20,7 @@ public class Employee {
         ++count;
     }
 
+    @Override
     public String toString(){
         return String.format("%s, %s Hired: %s BirthDay: %s",
             lastName, firstName, hireDate, birthDate
