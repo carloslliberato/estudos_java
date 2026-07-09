@@ -1,7 +1,7 @@
 package folhaPagamento;
 import java.math.BigDecimal;
-import java.util.Locale;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Salaried extends Employee {
 
@@ -9,14 +9,14 @@ public class Salaried extends Employee {
     private final Locale localBrasil = Locale.of("pt", "BR");
     private final NumberFormat formatador = NumberFormat.getCurrencyInstance(localBrasil);
 
-    public Salaried(String firstName, String lastName, String socialSecurityNumber, BigDecimal weeklySalary){
+    public Salaried(String firstName, String lastName, String socialSecurityNumber, double weeklySalary){
         super(firstName, lastName, socialSecurityNumber);
 
-        if(weeklySalary.compareTo(BigDecimal.ZERO) < 0.0){
+        if(weeklySalary < 0.0){
             throw new IllegalArgumentException("Weekly salary must be >= 0.0");
         }
 
-        this.weeklySalary = weeklySalary;
+        this.weeklySalary = BigDecimal.valueOf(weeklySalary);
     }
 
     public void setWeeklySalary(BigDecimal NewWeeklySalary){
