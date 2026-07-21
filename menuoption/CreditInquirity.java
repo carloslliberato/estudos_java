@@ -34,22 +34,21 @@ public class CreditInquirity {
         );
 
         try {
-            try (Scanner input = new Scanner(System.in)) {
+            Scanner input = new Scanner(System.in);
                 do{
                     System.out.printf("%n? ");
                     request = input.nextInt();
                 }while((request < 1) || (request > 4));
-            }
 
         } catch (NoSuchElementException noSuchElementException) {
-            System.err.println("Invalid input. Terminating.");
+            System.err.printf("Invalid input. Terminating. %s", noSuchElementException.getMessage());
         }
 
         return choices[request - 1];
     }
 
     private static void readRecords(MenuOption accountType){
-        try(Scanner input = new Scanner(Paths.get("clients.txt"))){
+        try(Scanner input = new Scanner(Paths.get("clientes.txt"))){
             while (input.hasNext()){
                 int accountNumber = input.nextInt();
                 String firstName = input.next();
@@ -65,7 +64,7 @@ public class CreditInquirity {
                 }
             }
         }catch(NoSuchElementException | IllegalStateException | IOException e){
-            System.err.println("Error processing file. Terminating.");
+            System.err.printf("Error processing file. Terminating. %s", e.getMessage());
             System.exit(1);
         }
     }
