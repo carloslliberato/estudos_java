@@ -67,4 +67,10 @@ public class Hourly extends Employee {
             "hours worked", this.getHours()
         );
     }
+
+    @Override
+    public double getPaymentAmount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPaymentAmount'");
+    }
 }

@@ -63,5 +63,11 @@ public class Commission extends Employee{
             "commission rate", formatador.format(getCommissionRate())
         );
     }
+
+    @Override
+    public double getPaymentAmount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPaymentAmount'");
+    }
     
 }
