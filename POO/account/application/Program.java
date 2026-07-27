@@ -1,5 +1,8 @@
 package account.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import account.entities.Account;
 import account.entities.BusinessAccount;
 import account.entities.SavingAccount;
@@ -7,25 +10,21 @@ import account.entities.SavingAccount;
 public class Program {
     public static void main(String[] args) {
         
-        Account acc =  new Account(1001, "Alex", 0.0);
-        BusinessAccount bacc = new BusinessAccount(1002, "Maria", 0.0, 500.00);
-
-        //UPCASTING
-        Account acc1 = bacc; // BusinessAccount eh um Account
-        // BusinessAccount bacc1 = acc2 // Erro: Account não é um BusinessAccount
-        Account acc2 = new BusinessAccount(1003, "Bob", 0.0, 5000.0);
-        Account acc3 = new SavingAccount(1004, "Anna", 0.0, 0.01);
+        List<Account> lista = new ArrayList<>();
         
-        // DOWNCASTING
-        // BusinessAccount bacc1 = acc2; // Erro: Account não é um BusinessAccount
-        BusinessAccount bacc1 = (BusinessAccount) acc2;
+        // Account acc1 = new Account(101, "Alex", 1000.00);
+        Account acc1 = new SavingAccount(102, "Maria", 1000.00, 0.01);
+        Account acc2 = new BusinessAccount(103, "Bob", 1000.00, 500.00);
 
-        if(acc3 instanceof BusinessAccount){
-            BusinessAccount acc4 = (BusinessAccount) acc3;
-            acc4.loan(200);
-            System.out.println("LOAN");
+        lista.add(acc1);
+        lista.add(acc2);
+
+        double sum = 0.0;
+        for(Account acc : lista){
+            sum += acc.getBalance();
         }
 
+        System.out.println("Total balance: " + sum);
         
     }
 }
