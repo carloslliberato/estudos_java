@@ -1,0 +1,38 @@
+package interfaces.model.services;
+
+import java.time.Duration;
+
+import interfaces.model.entities.CarRental;
+import interfaces.model.entities.Invoice;
+
+public class RentalService {
+    
+    private Double pricePerHour;
+    private Double pricePerDay;
+
+    // tipo generico
+    private TaxService taxService;
+
+    public RentalService(Double pricePerHour, Double pricePerDay, TaxService taxService) {
+        this.pricePerHour = pricePerHour;
+        this.pricePerDay = pricePerDay;
+        // aqui recebe uma taxa (pode ser do brasil ou usa, mas isso o programa nao sabe de qual é, por isso usa o tipo generico)
+        // TaxService taxService = new BrazilTaxService();
+        this.taxService = taxService;
+    }
+
+    public void processInvoice(CarRental carRental){
+        double minutes = Duration.between(carRental.getStart(), carRental.getFinish()).toMinutes();
+        double hours = minutes / 60.0;
+
+        double basicPayment;
+        if(hours >= 12.0){
+            basicPayment = pricePerHour * Math.ceil(hours);
+        }else{
+            basicPayment = pricePerDay * Math.ceil(hours / 24.0);
+        }
+
+        double tax = taxService.tax(basicPayment);
+        carRental.setInvoice(new Invoice(basicPayment, tax));
+    }
+}
